@@ -1,24 +1,24 @@
 # UV Viewer for Unity Editor
-UVViewerWindow는 유니티 에디터에서 메시의 UV를 확인할 수 있는 에디터 윈도우 확장 클래스입니다. 유니티 5.4 버전 이상이 필요합니다.
+UVViewerWindow 是一个编辑器窗口扩展类，允许您在 Unity 编辑器中查看网格的 UV。需要 Unity 5.4 或更高版本。
 
 ![](Screenshot.png)
 
-## 설치
-[릴리스 페이지](https://github.com/songkyoo/UVViewer/releases)에서 유니티 패키지를 다운로드 받아 임포트하거나 [Assets/Plugins](Assets/Plugins) 폴더를 프로젝트로 복사하면 메뉴바의 Window 항목에 UV Viewer가 추가됩니다. 해당 항목을 실행하면 에디터 윈도우가 생성됩니다.
+## 安装
+[发布页面]从 （https://github.com/songkyoo/UVViewer/releases） 下载和导入 unity 包，或将"Assets/Plugins"文件夹复制到项目中，UV 查看器将添加到菜单栏的Window->UI Viewer项中。运行该项时，将创建一个编辑器窗口。
 
-## 사용법
-### 메시 설정
-Mesh 항목이 Selected Object일 경우 메시 혹은 MeshFilter, SkinnedMeshRenderer 컴포넌트를 포함하는 게임 오브젝트를 선택하면 UV를 표시합니다.
+## 用法
+### 设置网格
+如果网格条目为Selected Object，请选择包含Mesh或 MeshFilter、SkinnedMeshEnderer 组件的游戏对象以显示 UV。
 
-Mesh 항목을 Custom으로 설정하면 메시를 직접 설정할 수 있습니다. 오브젝트를 뷰 영역으로 드래그 앤 드롭해도 동일한 동작을 수행합니다. 드래그 가능한 오브젝트는 메시 혹은 MeshFilter, SkinnedMeshRenderer 컴포넌트를 포함하는 게임 오브젝트입니다.
+如果将Mesh项设置为Custom，则可以自行设置网格。将对象拖放到视图区域中执行相同的行为。可拖动对象是包含Mesh或MeshFilter、SkinnedMeshEnderer组件的游戏对象。
 
-### 텍스처 설정
-Mesh 항목이 Selected Object일 경우 선택한 게임 오브젝트가 MeshRenderer, SkinnedMeshRenderer 컴포넌트를 포함한다면 Texture 항목을 Materials로 설정했을 경우 렌더러에 포함된 머티리얼의 텍스처를 선택할 수 있습니다.
+### 纹理设置
+如果Mesh条目为Selected Object，则如果选定的游戏对象包含MeshRenderer、SkinnedMeshRenderer组件，则如果Texture项设置为Material，则可以选择渲染器中包含的材质的纹理。
 
-Texture 항목을 Custom으로 설정하면 텍스처를 직접 설정할 수 있습니다. 텍스처를 뷰 영역으로 드래그 앤 드롭해도 동일한 동작을 수행합니다.
+如果将Texture项设置为Custom，则可以自行设置纹理。将纹理拖放到视图区域中可以执行相同的操作。
 
-### 에디터 스크립트에서 접근하기
-에디터 스크립트에서 생성한 메시 혹은 텍스처를 설정할 수 있습니다. 다음 코드는 윈도우가 표시되고 있다면 표시되고 있는 윈도우에 값을 설정하고 표시되는 윈도우가 없다면 새로운 윈도우를 생성하고 값을 설정합니다.
+### 从编辑器脚本访问
+您可以设置由编辑器脚本创建的网格或纹理。下面的代码为窗口设置一个值，如果显示窗口，则在没有显示窗口时显示该窗口，则创建一个新窗口并设置一个值。
 
 ```csharp
 using Macaron.UVViewer.Editor;
@@ -27,18 +27,18 @@ class EditorClass
 {
     void SetCustom(Mesh mesh, Texture texture)
     {
-        // 메시 설정.
+        // 设置网格.
         UVViewerWindow.ShowWindow().SetCustomMesh(mesh);
 
-        // 텍스처 설정.
+        // 纹理设置.
         UVViewerWindow.ShowWindow().SetCustomTexture(texture);
     }
 }
 ```
 
-`SetCustomMesh`, `SetCustomTexture` 메서드를 호출하면 Mesh, Texture 항목이 Custom으로 변경되고 호출한 값으로 Source가 설정됩니다. 각 메서드는 개별적으로 호출될 수 있습니다.
+`SetCustomMesh`, `SetCustomTexture` 调用该方法时，Mesh、Texture条目将更改为Custom，而Source将设置为您调用的值。每个方法都可以单独调用。
 
-## 제한 사항
-1. 표시되는 UV와 텍스처는 원본에 대한 변경을 자동으로 반영하지 않습니다. 갱신이 필요할 경우 Mesh, Texture 항목의 Reload 버튼을 눌러 다시 로드해야합니다.
+## 局限性
+1. 显示的 UV 和纹理不会自动反映对原始更改的更改。如果需要续订，则需要通过按网格体，纹理项目上的重新加载按钮来重新加载它。
 
-2. Geometry 셰이더가 지원되지 않는 경우 Line Thickness 항목을 사용할 수 없고, HiDPI 환경에서 뷰 영역이 저해상도로 표시됩니다.
+2. 如果不支持几何着色器，则线粗条目不可用，并且视图区域在 HiDPI 环境中以低分辨率显示。
