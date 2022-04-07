@@ -4,7 +4,7 @@ UVViewerWindow 是一个编辑器窗口扩展类，允许您在 Unity 编辑器�
 ![](Screenshot.png)
 
 ## 安装
-[发布页面]从 （https://github.com/songkyoo/UVViewer/releases） 下载和导入 unity 包，或将"Assets/Plugins"文件夹复制到项目中，UV 查看器将添加到菜单栏的Window->UI Viewer项中。运行该项时，将创建一个编辑器窗口。
+[发布页面]从 （[UVViewer/Release at master · zzf/UVViewer (github.com)](https://github.com/zzf/UVViewer/tree/master/Release)） 下载和导入 unity 包，或将"Assets/Plugins"文件夹复制到项目中，UV 查看器将添加到菜单栏的Window->UI Viewer项中。运行该项时，将创建一个编辑器窗口。
 
 ## 用法
 ### 设置网格
